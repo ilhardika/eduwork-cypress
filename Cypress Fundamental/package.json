@@ -1,0 +1,14 @@
+{
+  "name": "eduwork_cypress",
+  "version": "1.0.0",
+  "description": "Cypress Fundamental Intro",
+  "main": "index.js",
+  "author": "Ilham Hardika",
+  "license": "MIT",
+  "scripts": {
+    "cy:open": "cypress open"
+  },
+  "dependencies": {
+    "cypress": "^12.8.1"
+  }
+}
