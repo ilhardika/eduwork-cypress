@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login_zerowebbapp', (username,password) => {
+    cy.get('#user_login').type(username)
+    cy.get('#user_password').type(password)
+    cy.get('#user_remember_me').click()
+    cy.get('[name="submit"]').click()
+})
+
+Cypress.Commands.add('fill_bill', (payee, account, amount, date, desc) =>{
+    cy.get('#sp_payee').select(payee)
+    cy.get('#sp_account').select(account)
+    cy.get('#sp_amount').type(amount)
+    cy.get('#sp_date').type(date)
+    cy.get('#sp_description').type(desc, {force: true})
+})
