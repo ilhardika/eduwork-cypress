@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login_zeroweb', (username, password) => {
+    cy.get('#user_login').clear()
+    cy.get('#user_login').type(username)
+    cy.get('#user_password').clear()
+    cy.get('#user_password').type(password)
+    cy.get('[name="submit"]').click()
+})
