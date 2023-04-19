@@ -1,0 +1,15 @@
+{
+  "name": "BDD",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ilham",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^12.10.0",
+    "prettier": "^2.8.7"
+  },
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^16.0.3",
+    "@cypress/browserify-preprocessor": "^3.0.2"
+  }
+}
