@@ -13,6 +13,16 @@
     "@cypress/browserify-preprocessor": "^3.0.2",
     "cypress": "latest"
   },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "stepDefinitions": "**/stepDefs/*.js"
+  },  
+  "cucumberJson": {
+    "generate": true,
+    "outputFolder": "cypress/cucumber-json",
+    "filePrefix": "",
+    "fileSuffix": ".cucumber"
+  },
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run"
