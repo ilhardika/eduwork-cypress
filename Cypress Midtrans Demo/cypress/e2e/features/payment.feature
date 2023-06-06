@@ -3,70 +3,32 @@ Feature: Payment
     I want to make payments
     So that I can complete my purchase
 
-    Scenario: Positive Test Payment - Akulaku PayLater
-        Given I am on the Midtrans website
-        When I click "Buy now"
-        And I click "Checkout"
-        And I select "Akulaku PayLater" as the payment method
-        And I click "Pay now"
-# And I enter the phone number "08122222222"
-# And I click "Next"
-# And I click "Pay"
-# Then I should see the text "Transaction is Successful"
+    Scenario: Positive test - Pembayaran dengan Kartu Kredit
+        Given I am on the Demo Midtrans website
+        When I select "Credit Card" as the payment method
+        And I enter a valid credit card number, expiration date, and CVV
+        And I click "Pay Now" button
+        Then I should see a successful payment message
 
-# Scenario: Negative Test Payment - Akulaku PayLater
-#     Given I am on the Midtrans website
-#     When I click "Buy now"
-#     And I click "Checkout"
-#     And I select "Akulaku PayLater" as the payment method
-#     And I click "Pay now"
-#     And I enter the phone number "08144444444"
-#     And I click "Next"
-#     And I click "Pay"
-#     Then I should see the text "Transaction is Denied"
+    Scenario: Negative test - Nomor kartu kredit tidak valid
+        Given I am on the Demo Midtrans website
+        When I select "Credit Card" as the payment method
+        And I enter an invalid credit card number
+        Then I should see an invalid credit card number message
 
-# Scenario: Positive Test Payment - Kredivo
-#     Given I am on the Midtrans website
-#     When I click "Buy now"
-#     And I click "Checkout"
-#     And I select "Kredivo" as the payment method
-#     And I click "Pay now"
-#     And I enter the phone number "081123123123"
-#     And I enter the verification code "123456"
-#     And I select the service duration
-#     And I click "Next"
-#     And I enter the OTP code "1234"
-#     And I click "Next"
-#     Then I should see the text "Transaction is Successful"
+    Scenario: Negative test - Tanggal kadaluwarsa kartu kredit tidak valid
+        Given I am on the Demo Midtrans website
+        When I select "Credit Card" as the payment method
+        And I enter an invalid expiration date
+        Then I should see an invalid expiration date message
 
-# Scenario: Negative Test Payment - Kredivo
-#     Given I am on the Midtrans website
-#     When I click "Buy now"
-#     And I click "Checkout"
-#     And I select "Kredivo" as the payment method
-#     And I click "Pay now"
-#     And I enter the phone number "081321321321"
-#     And I enter the verification code "123456"
-#     And I select the service duration
-#     And I click "Next"
-#     And I enter the OTP code "1234"
-#     And I click "Next"
-#     Then I should see the text "Transaction is Denied"
+    Scenario: Negative test - Kartu ditolak oleh bank
+        Given I am on the Demo Midtrans website
+        When I select "Credit Card" as the payment method
+        And I enter an invalid CVV
+        Then I should see a card declined message
 
-# Scenario: Positive Test Payment - BRI Mobile
-#     Given I am on the Midtrans website
-#     When I click "Buy now"
-#     And I click "Checkout"
-#     And I select "BRImo" as the payment method
-#     And I click "Pay now"
-#     And I enter the name "testuser00"
-#     Then I should see the text "Transaksi Sukses"
-
-# Scenario: Negative Test Payment - BRI Mobile
-# Given I am on the Midtrans website
-# When I click "Buy now"
-# And I click "Checkout"
-# And I select "BRImo" as the payment method
-# And I click "Pay now"
-# And I enter any name other than "testuser00"
-# Then I should see the text "Transaksi Gagal"
+    Scenario: Positive test - Menampilkan QR code pada pembayaran QRIS
+        Given I am on the Demo Midtrans website
+        When I select "QRIS" as the payment method
+        Then I should see a QR code displayed

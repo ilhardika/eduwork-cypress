@@ -2,38 +2,63 @@ import paymentPage from '../pageObject/payment.page.js';
 
 const { Given, When, Then } = require('@badeball/cypress-cucumber-preprocessor')
 
-Given('I am on the Midtrans website', () => {
+Given ('I am on the Demo Midtrans website', () => {
     paymentPage.open()
-});
-
-When('I click "Buy now"', () => {
-    paymentPage.clickBuyNow()
-});
-
-When('I click "Checkout"', () => {
-    paymentPage.clickCheckout()
-});
-
-When ('I select "Akulaku PayLater" as the payment method', () => {
-    paymentPage.clickAkulakuPayment()
 })
 
-When ('I click "Pay now"', () => {
-    paymentPage.clickPaynow()
+When ('I select "Credit Card" as the payment method', () => {
+    paymentPage.kreditCardPayment()
 })
 
-// When ('I enter the phone number "08122222222"', () => {
-//     paymentPage.inputNumber()
-// })
+When ('I select "QRIS" as the payment method', () => {
+    paymentPage.qrisPayment()
+})
 
-// When ('I click "Next"', () => {
+When ('I enter a valid credit card number, expiration date, and CVV', () => {
+    paymentPage.kreditCardNumber()
+    paymentPage.kreditCardExpDate()
+    paymentPage.kreditCrdCvv()
+})
 
-// })
+When ('I click "Pay Now" button', () => {
+    paymentPage.clickPayNow()
+    cy.wait(10000)
+})
 
-// When ('I click "Pay"', () => {
+When ('I enter an invalid credit card number', () => {
+    cy.iframe().find('.card-number-input-container > input').type('1234123412341234')
+    paymentPage.kreditCardExpDate()
+    paymentPage.kreditCrdCvv()
+})
 
-// })
+When ('I enter an invalid expiration date', () => {
+    paymentPage.kreditCardNumber()
+    cy.iframe().find('#card-expiry').type('1234')
+    paymentPage.kreditCrdCvv()
+})
 
-// Then ('I should see the text "Transaction is Successful"', () => {
+When ('I enter an invalid CVV', () => {
+    paymentPage.kreditCardNumber()
+    paymentPage.kreditCardExpDate()
+    cy.iframe().find('#card-cvv').type('321')
+})
 
-// })
+Then ('I should see an invalid credit card number message', () => {
+    paymentPage.invalidCreditCardNumber()
+})
+
+Then ('I should see an invalid expiration date message', () => {
+    paymentPage.invalidCreditCardExpirationDate()
+})
+
+Then ('I should see a card declined message', () => {
+    paymentPage.invalidCreditCardCVV()
+})
+
+Then ('I should see a successful payment message', () => {
+    paymentPage.successfulPayment()
+})
+
+Then ('I should see a QR code displayed', () => {
+    paymentPage.qrisCode()
+})
