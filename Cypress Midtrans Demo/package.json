@@ -14,6 +14,10 @@
     "cypress-iframe": "^1.0.1",
     "multiple-cucumber-html-reporter": "^3.4.0"
   },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "stepDefinitions": "**/stepDefs/*.js"
+  },
   "cucumberJson": {
     "generate": true,
     "outputFolder": "cypress/cucumber-json",
