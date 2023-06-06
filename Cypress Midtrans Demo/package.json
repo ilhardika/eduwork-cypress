@@ -1,0 +1,23 @@
+{
+  "name": "Cypress-Midtrans-Demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^12.13.0",
+    "prettier": "^2.8.8"
+  },
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^17.2.1",
+    "@cypress/browserify-preprocessor": "^3.0.2",
+    "cypress": "latest",
+    "cypress-iframe": "^1.0.1",
+    "multiple-cucumber-html-reporter": "^3.4.0"
+  },
+  "cucumberJson": {
+    "generate": true,
+    "outputFolder": "cypress/cucumber-json",
+    "filePrefix": "",
+    "fileSuffix": ".cucumber"
+  }
+}
